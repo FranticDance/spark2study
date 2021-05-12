@@ -1,4 +1,4 @@
-package org.example
+package org.example.dataframe
 
 import org.apache.spark.sql.SparkSession
 
