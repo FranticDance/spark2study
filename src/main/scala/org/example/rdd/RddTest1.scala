@@ -14,7 +14,9 @@ object RddTest1 {
     val context = new SparkContext(sparkConf)
     val list = List(1, 2, 3, 4,5)
     val rdd = context.makeRDD(list, 3)
-    rdd.saveAsTextFile("output")
+    val value = rdd.repartition(5)
+    value.saveAsTextFile("output4")
+    Thread.sleep(5000000)
     context.stop()
   }
 
