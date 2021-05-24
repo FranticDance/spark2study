@@ -1,5 +1,8 @@
 package org.example.rdd
 
+import java.io.File
+
+import org.apache.commons.io.FileUtils
 import org.apache.spark.{SparkConf, SparkContext}
 
 /**
@@ -9,9 +12,11 @@ import org.apache.spark.{SparkConf, SparkContext}
  */
 object RddTest4 {
   def main(args: Array[String]): Unit = {
+    FileUtils.deleteQuietly(new File("output5"))
     val conf = new SparkConf().setMaster("local[*]").setAppName("test")
     val context = new SparkContext(conf)
     val rdd = context.textFile(getResourcePath("helloword.txt"))
+    rdd.repartition(3).saveAsTextFile("output5")
     println(rdd.toDebugString)
     println("===============")
     val rdd1 = rdd.flatMap(_.split(","))

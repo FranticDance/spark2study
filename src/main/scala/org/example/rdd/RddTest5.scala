@@ -24,6 +24,7 @@ object RddTest5 {
     val value = rdd.repartition(5)
     println(value.toDebugString)
     println(value.dependencies)
+    println(value.collect())
     println("=======22222========")
     println(rdd.dependencies)
     println("===============")
